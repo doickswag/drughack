@@ -1,0 +1,37 @@
+{
+  "click": {
+    "sounds": [
+      "drughack:click"
+    ]
+  },
+  "rclick": {
+    "sounds": [
+      "drughack:rclick"
+    ]
+  },
+  "hover": {
+    "sounds": [
+      "drughack:hover"
+    ]
+  },
+  "css": {
+    "sounds": [
+      "drughack:css"
+    ]
+  },
+  "kaban": {
+    "sounds": [
+      "drughack:kaban"
+    ]
+  },
+  "neverlose": {
+    "sounds": [
+      "drughack:neverlose"
+    ]
+  },
+  "vk": {
+    "sounds": [
+      "drughack:vk"
+    ]
+  }
+}

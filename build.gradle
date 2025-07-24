@@ -1,0 +1,110 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'maven-publish'
+    id 'com.github.gmazzo.buildconfig' version '5.5.1'
+    id 'com.gradleup.shadow' version '9.0.0-beta15'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.mod_id
+}
+
+repositories {
+    maven {
+        name = "meteor-maven"
+        url = "https://maven.meteordev.org/releases"
+    }
+
+    maven {
+        name = "meteor-maven"
+        url = "https://maven.meteordev.org"
+    }
+
+    mavenCentral()
+}
+
+dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+    include implementation("meteordevelopment:discord-ipc:1.1")
+    include implementation("meteordevelopment:orbit:0.2.3")
+    implementation(shadow("dev.redstones.mediaplayerinfo:media-player-info:0.1.0"))
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "loader_version", project.loader_version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version, "minecraft_version": project.minecraft_version, "loader_version": project.loader_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    if (21 >= 10 || JavaVersion.current().isJava10Compatible()) it.options.release.set(21)
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/drughack.accesswidener")
+}
+
+def getHash = { ->
+    def gitProcess = 'git rev-parse HEAD'.execute()
+    gitProcess.waitFor()
+    return gitProcess.text.trim().take(15)
+}
+
+def getCommit = { ->
+    def gitProcess = 'git log -1 --pretty=format:"%h'.execute()
+    gitProcess.waitFor()
+    return gitProcess.text.trim()
+}
+
+def getMoscowTime = { ->
+    def formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm")
+    formatter.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"))
+    return formatter.format(new Date())
+}
+
+buildConfig {
+    className("BuildConfig")
+    packageName("ru.drughack")
+    buildConfigField(String, "NAME", "drughack.cc")
+    buildConfigField(String, "VERSION", "private")
+    buildConfigField(String, "BUILD_TIME", "${getMoscowTime()}")
+    buildConfigField(String, "TOKEN", "dolbaeb1337")
+    buildConfigField(String, "HASH", getHash())
+    buildConfigField(String, "COMMIT", getCommit())
+    useJavaOutput()
+}
+
+java {
+    def javaVersion = JavaVersion.toVersion(21)
+    if (JavaVersion.current() < javaVersion) toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+}
+
+remapJar {
+    dependsOn(shadowJar)
+}

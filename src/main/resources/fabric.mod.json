@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "drughack-fabric",
+  "version": "${version}",
+  "name": "drughack-fabric",
+  "description": "vanillaguard",
+  "authors": [],
+  "contact": {},
+  "license": "Allah will curse you if you try to crack this client",
+  "icon": "assets/drughack/textures/drughack.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "ru.drughack.DrugHack"
+    ]
+  },
+  "mixins": [
+    "drughack.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

@@ -1,25 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "drughack-fabric",
-  "version": "${version}",
-  "name": "drughack-fabric",
-  "description": "vanillaguard",
-  "authors": [],
+  "id": "drughack-recode-fabric",
+  "version": "0.1-recode",
+  "name": "drughack-recode-fabric",
+  "description": "",
+  "authors": ["serverattacked"],
   "contact": {},
-  "license": "Allah will curse you if you try to crack this client",
-  "icon": "assets/drughack/textures/drughack.png",
+  "license": "All-Rights-Reserved",
+  "icon": "assets/drughack/logo.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "ru.drughack.DrugHack"
+      "fun.drughack.DrugHack"
     ]
   },
   "mixins": [
-    "drughack.mixins.json"
+    "drughack-recode.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "fabricloader": ">=0.16.10",
+    "minecraft": "1.21.4"
   }
 }

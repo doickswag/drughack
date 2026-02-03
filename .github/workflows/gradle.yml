@@ -36,4 +36,4 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: false
           title: "Release (1.21.4)"
-          files: ./build/libs/drughack-0.1-private.jar
+          files: ./build/libs/drughack-0.1-recode.jar

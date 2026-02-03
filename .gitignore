@@ -1,4 +1,10 @@
+/.idea/
 /.gradle/
 /build/
 /run/
-/.idea/
+/bin/
+/.classpath/
+/.project/
+/.settings/
+/drughack-recode-fabric_client.launch/
+/drughack-recode-fabric_server.launch/

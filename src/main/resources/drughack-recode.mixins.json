@@ -1,0 +1,49 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fun.drughack.api.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CameraMixin",
+    "ClientConnectionMixin",
+    "EntityMixin",
+    "FireworkRocketEntityMixin",
+    "HeldItemRendererMixin",
+    "KeyboardMixin",
+    "LimbAnimatorMixin",
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "accessors.IGameRenderer",
+    "accessors.ILivingEntity"
+  ],
+  "client": [
+    "ArmorFeatureRendererMixin",
+    "BossBarHudMixin",
+    "ChatInputSuggestorMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "EntityRendererMixin",
+    "GameRendererMixin",
+    "GenericContainerScreenMixin",
+    "InGameHudMixin",
+    "InGameOverlayRendererMixin",
+    "KeyboardInputMixin",
+    "LightmapTextureManagerMixin",
+    "LivingEntityRendererMixin",
+    "MinecraftClientMixin",
+    "MixinTitleScreen",
+    "MouseMixin",
+    "ParticleManagerMixin",
+    "PressableWidgetMixin",
+    "SliderWidgetMixin",
+    "WorldRendererMixin",
+	"accessors.IBossBarHud",
+    "accessors.IClientPlayerInteractionManager",
+    "accessors.IMinecraftClient",
+    "accessors.IWorldRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
